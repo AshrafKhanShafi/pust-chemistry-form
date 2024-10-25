@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chemistry Department Form</title>
+
+    <!-- Load CSS early to reduce FOUC -->
+    <link rel="preload" href="style.css" as="style" onload="this.rel='stylesheet'">
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/1484/1484799.png" type="image/x-icon">
+
+    <noscript>
+        <link rel="stylesheet" href="style.css">
+    </noscript>
+</head>
+
+<body style="display: none;">
+    <div class="form-container">
+        <h2>Registration Form</h2>
+        <form autocomplete="off" method="post" name="contact-form" id="contact-form">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="Name" placeholder="Enter your name" required>
+
+            <label for="facebook">Facebook ID</label>
+            <input type="text" id="facebook" name="Facebook Id" placeholder="Enter Facebook ID" required>
+
+            <label for="gst-position">GST Position</label>
+            <input type="number" id="gst-position" name="GST-Position" placeholder="Enter GST Position" min="1000" max="20000" required>
+
+            <label for="number">Number</label>
+            <input type="number" id="number" name="Number" placeholder="Enter your number" maxlength="11" required>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        // Remove the display:none after page load to prevent FOUC
+        window.addEventListener('load', function() {
+            document.body.style.display = 'block';
+        });
+
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwZkTdJPpe3dMUJKhf3KJjG7NbtwJOliiD5EkwYrYyJSrEGGT-Hl2qC5TcEVicINxl7/exec';
+        const form = document.getElementById('contact-form');
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                .then(response => {
+                    if (!response.ok) throw new Error('Network response was not ok');
+                    alert("Thank you! Your form is submitted successfully.");
+                    window.location.reload();
+                })
+                .catch(error => console.error('Error submitting form!', error));
+        });
+    </script>
+</body>
+
+</html>
