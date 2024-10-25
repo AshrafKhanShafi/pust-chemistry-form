@@ -5,9 +5,9 @@
 }
 
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
     min-height: 100vh;
     font-family: Arial, sans-serif;
     background: linear-gradient(135deg, rgb(67, 0, 238), rgb(218, 0, 123));
